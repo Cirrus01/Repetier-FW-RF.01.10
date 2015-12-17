@@ -39,12 +39,14 @@
 #define	HOTEND_TYPE_V1						2	// hotend V1
 #define	HOTEND_TYPE_V2_SINGLE				3	// hotend V2 for single extruder
 #define	HOTEND_TYPE_V2_DUAL					4	// hotend V2 for dual extruder
+#define	HOTEND_TYPE_DG_HPX2_MAX				4	// hotend DGlass HPX2-MAX dual extruder
 
 #define MILLER_TYPE_ONE_TRACK				1	// one track in x- and y-direction
 #define MILLER_TYPE_TWO_TRACKS				2	// two tracks in x- and y-direction
 
 #define	ENDSTOP_TYPE_SINGLE					1	// there is only one endstop attached (either the min- or the max-endstop)
 #define	ENDSTOP_TYPE_CIRCUIT				2	// the min- and max-endstops are attached in a single circuit
+#define	ENDSTOP_TYPE_SEPARATED				3	// the min- and max-endstops are seperated into two separate circuits
 
 #define	ENDSTOP_NOT_HIT						0
 #define	ENDSTOP_IS_HIT						1

@@ -281,6 +281,7 @@
 #define UI_TEXT_Z_CIRCUIT				"Circuit"
 #define UI_TEXT_HOTEND_V1				"V1"
 #define UI_TEXT_HOTEND_V2				"V2"
+#define UI_TEXT_HOTEND_DG				"DGlass HPX2-MAX"
 #define UI_TEXT_MILLER_ONE_TRACK		"one t."
 #define UI_TEXT_MILLER_TWO_TRACKS		"two t."
 #define	UI_TEXT_FIND_Z_ORIGIN_ABORTED	"Search aborted"
@@ -320,6 +321,9 @@
 #define UI_TEXT_STOP_MILL				"Stop Mill"
 #define UI_TEXT_STOP_MILL_ACK			"Stop Mill now?","","%mYYes","%mNNo"
 
+#if RF1000_EXT_BOARD
+#define UI_TEXT_230V_OUTPUT				"230V Output: %ou"
+#endif
 
 #if MOTHERBOARD == DEVICE_TYPE_RF2000
 #define	UI_TEXT_RGB_LIGHT_MODE			"RGB Light: %li"

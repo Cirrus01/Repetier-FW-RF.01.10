@@ -611,7 +611,7 @@ inline void prepareBedUp( void )
 	WRITE( Z2_DIR_PIN, INVERT_Z_DIR );
 #endif // FEATURE_TWO_ZSTEPPER
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATED_Z_ENDSTOPS
 	Printer::decreaseLastZDirection();
 #endif // FEATURE_CONFIGURABLE_Z_ENDSTOPS
 
@@ -626,7 +626,7 @@ inline void prepareBedDown( void )
 	WRITE( Z2_DIR_PIN, !INVERT_Z_DIR );
 #endif // FEATURE_TWO_ZSTEPPER
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATED_Z_ENDSTOPS
 	Printer::increaseLastZDirection();
 #endif // FEATURE_CONFIGURABLE_Z_ENDSTOPS
 
@@ -641,7 +641,7 @@ inline void startZStep( char nDirection )
     WRITE( Z2_STEP_PIN,HIGH );
 #endif // FEATURE_TWO_ZSTEPPER
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATED_Z_ENDSTOPS
 	if( Printer::endstopZMinHit )	Printer::stepsSinceZMinEndstop += nDirection;
 	if( Printer::endstopZMaxHit )	Printer::stepsSinceZMaxEndstop += nDirection;
 #endif // FEATURE_CONFIGURABLE_Z_ENDSTOPS

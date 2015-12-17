@@ -156,7 +156,7 @@ public:
 	static float			drillZDepth;
 #endif // FEATURE_MILLING_MODE
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATED_Z_ENDSTOPS
 	static char				ZEndstopType;
 	static char				ZEndstopUnknown;
 	static char				lastZDirection;
@@ -315,7 +315,7 @@ public:
 		Printer::enabledStepper[Z_AXIS] = 0;
 #endif // STEPPER_ON_DELAY
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATED_Z_ENDSTOPS
 		Printer::lastZDirection		   = 0;
 		Printer::endstopZMinHit		   = ENDSTOP_NOT_HIT;
 		Printer::endstopZMaxHit		   = ENDSTOP_NOT_HIT;
@@ -472,7 +472,7 @@ public:
 			WRITE( Z2_DIR_PIN, !INVERT_Z_DIR );
 #endif // FEATURE_TWO_YSTEPPER
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATED_Z_ENDSTOPS
 			increaseLastZDirection();
 #endif // FEATURE_CONFIGURABLE_Z_ENDSTOPS
 
@@ -487,7 +487,7 @@ public:
 			WRITE( Z2_DIR_PIN, INVERT_Z_DIR );
 #endif // FEATURE_TWO_YSTEPPER
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATED_Z_ENDSTOPS
 			Printer::decreaseLastZDirection();
 #endif // FEATURE_CONFIGURABLE_Z_ENDSTOPS
 
@@ -501,7 +501,7 @@ public:
     } // getZDirection
 
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATED_Z_ENDSTOPS
 	static inline void increaseLastZDirection()
 	{
 		lastZDirection = 1;

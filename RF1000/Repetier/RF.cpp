@@ -6766,7 +6766,7 @@ void processCommand( GCode* pCommand )
 							Com::printFLN( PSTR( "") );
 #endif // FEATURE_MILLING_MODE
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATED_Z_ENDSTOPS
 							Com::printF( PSTR( "Z endstop type= "), Printer::ZEndstopType );
 							Com::printF( PSTR( ", Z-Min= "), Printer::isZMinEndstopHit() );
 							Com::printF( PSTR( ", Z-Max= "), Printer::isZMaxEndstopHit() );

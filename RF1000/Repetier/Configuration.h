@@ -46,6 +46,8 @@ To override EEPROM settings with config settings, set EEPROM_MODE 0 */
 #define MOTHERBOARD							DEVICE_TYPE_RF1000
 #define PROTOTYPE_PCB						0													// 1 = first PCB's / 0 = Final
 
+#define RF1000_EXT_BOARD					1													// ExtensionBoard: 1 = mounted / 0 = unmounted
+
 /** \brief EEPROM storage mode
 Set the EEPROM_MODE to 0 if you always want to use the settings in this configuration file. If not,
 set it to a value not stored in the first EEPROM-byte used. If you later want to overwrite your current
@@ -143,7 +145,7 @@ is always running and is not hung up for some unknown reason. */
 #define	FEATURE_SERVICE_INTERVAL			0													// 1 = on, 0 = off
 
 /** \brief Allows to use the case light */
-#define FEATURE_CASE_LIGHT					0													// 1 = on, 0 = off
+#define FEATURE_CASE_LIGHT					1													// 1 = on, 0 = off			/Original 0
 
 /** \brief Allows to control up to 3 servos
 Servos are controlled by a pulse width normally between 500 and 2500 with 1500ms in center position. 0 turns servo off.
@@ -583,7 +585,7 @@ instead of driving both with a single stepper. The same works for the other axis
 Select the language to use.
 0 = English
 1 = German */
-#define UI_LANGUAGE							0
+#define UI_LANGUAGE							1												// Original 0
 
 /** \brief Animate switches between menus etc. */
 #define UI_ANIMATION						false
@@ -889,7 +891,7 @@ and it is elsewise difficult to know, what your reprap is currently doing. */
 #define ECHO_ON_EXECUTE						1
 
 /** \brief  Turn the case light on/off per default */
-#define CASE_LIGHTS_DEFAULT_ON				0
+#define CASE_LIGHTS_DEFAULT_ON				1													// Original: 0
 
 /** \brief Define the on temperature and the off delay for the fan */
 #define	CASE_FAN_ON_TEMPERATURE				50													// [°C]

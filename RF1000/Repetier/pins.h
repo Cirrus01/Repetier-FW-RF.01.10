@@ -35,6 +35,18 @@
   #error Oops!  Make sure you have 'Arduino Mega' selected from the 'Tools -> Boards' menu.
   #endif
 
+// ExtensionBoard pin mapping
+#if RF1000_EXT_BOARD == 1
+#define EXT_BOARD_0			57	// PINF.3, 94, PF3    Analog IN 0
+#define EXT_BOARD_1			58	// PINF.4, 93, PF4    Analog IN 1
+#define EXT_BOARD_2			19	// PIND.2, 45, PD2    Digital IN/OUT 0 / Used for z-max endstop
+#define EXT_BOARD_3			18	// PIND.3, 46, PD3    Digital IN/OUT 1
+#define EXT_BOARD_4			15	// PINJ.0, 63, PJ0    Digital IN/OUT 2
+#define EXT_BOARD_5			14	// PINJ.1, 64, PJ1    Digital IN/OUT 3 / Used for case light
+#define EXT_BOARD_6			91	// PINE.2, 91, PE2    Digital/Power OUT 4
+#endif // RF1000_EXT_BOARD == 1
+
+
 // Definition for current control
 #define STEPPER_CURRENT_CONTROL  CURRENT_CONTROL_DRV8711
 
@@ -62,7 +74,11 @@
 
 // the RF1000 with miller functionality can provide min and max endstops at the same pin
 #define ORIG_Z_MIN_PIN          31	// PINC.6, 59, ES3
+#if RF1000_EXT_BOARD
+#define ORIG_Z_MAX_PIN          19	// PIND.2, 45, PD2 Digital IN/OUT 0
+#else
 #define ORIG_Z_MAX_PIN          31	// PINC.6, 59, ES3
+#endif //RF1000_EXT_BOARD
 
 #define ORIG_E0_STEP_PIN        26	// PINA.4, 74, STP_DRV4
 #define ORIG_E0_DIR_PIN         28	// PINA.6, 72, DIR_DRV4
@@ -151,12 +167,13 @@
 #define ENABLE_KEY_5			42	// PINL.7, 42, TAST5
 
 // servo pin mapping
+// NOTE: R94 is not mounted on Mainboard, so this will only work if R94 or ExtensionBoard is mounted
 #define SERVO0_PIN				35	// PINC.2, 55, PC2
 #define SERVO1_PIN				33	// PINC.4, 57, PC4
 #define SERVO2_PIN				32	// PINC.5, 58, PC5
 
 // case light pin mapping
-#define CASE_LIGHT_PIN			25	// PINA.3, 75, OUT1
+#define CASE_LIGHT_PIN			EXT_BOARD_5	// PINJ.1, 64, PJ1    Digital IN/OUT 3
 
 // case fan pin mapping
 #define	CASE_FAN_PIN			 9	// PINH.6, 18, HZ2
@@ -174,10 +191,17 @@
 #define UI_DISPLAY_D6_PIN		44	// PINL.5, 40, D_D6
 #define UI_DISPLAY_D7_PIN		66	// PINK.4, 85, D_D7
 
+#if RF1000_EXT_BOARD == 1
+#define OUTPUT_230V_PIN			EXT_BOARD_6	
+#define FET1					EXT_BOARD_3	
+#define	FET2					EXT_BOARD_4	
+#define	FET3					EXT_BOARD_5	// Already used for case light!
+#else
 #define OUTPUT_230V_PIN			-1	
 #define FET1					-1	
 #define	FET2					-1	
 #define	FET3					-1	
+#endif // RF1000_EXT_BOARD == 1
 
 #endif // MOTHERBOARD == DEVICE_TYPE_RF1000
 

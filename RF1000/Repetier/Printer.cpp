@@ -157,7 +157,7 @@ float			Printer::drillFeedrate;
 float			Printer::drillZDepth;
 #endif // FEATURE_MILLING_MODE
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATED_Z_ENDSTOPS
 char			Printer::ZEndstopType;
 char			Printer::ZEndstopUnknown;
 char			Printer::lastZDirection;
@@ -999,7 +999,7 @@ void Printer::setup()
 	drillZDepth	  = 0.0;
 #endif // FEATURE_MILLING_MODE
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATED_Z_ENDSTOPS
 	ZEndstopType		  = DEFAULT_Z_ENDSTOP_TYPE;
 	ZEndstopUnknown		  = 0;
 	lastZDirection		  = 0;
@@ -1352,7 +1352,7 @@ void Printer::homeZAxis()
 		directPositionLastSteps[Z_AXIS]	   = 0;
 #endif // FEATURE_EXTENDED_BUTTONS || FEATURE_PAUSE_PRINTING
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATED_Z_ENDSTOPS
 		if( ZEndstopUnknown )
 		{
 			// in case we do not know which z-endstop is currently active, we always move downwards first
@@ -1527,7 +1527,7 @@ void Printer::homeAxis(bool xaxis,bool yaxis,bool zaxis) // home non-delta print
 
 		setZOriginSet(false);
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATED_Z_ENDSTOPS
 		ZEndstopUnknown = false;
 #endif // FEATURE_CONFIGURABLE_Z_ENDSTOPS
     }

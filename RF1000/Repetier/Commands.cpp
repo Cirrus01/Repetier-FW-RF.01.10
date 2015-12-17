@@ -1426,7 +1426,7 @@ void Commands::executeGCode(GCode *com)
 #endif // (Z_MIN_PIN > -1) && MIN_HARDWARE_ENDSTOP_Z
 
 #if (Z_MAX_PIN > -1) && MAX_HARDWARE_ENDSTOP_Z
-#if FEATURE_MILLING_MODE && FEATURE_CONFIGURABLE_Z_ENDSTOPS
+#if FEATURE_MILLING_MODE && (FEATURE_CONFIGURABLE_Z_ENDSTOPS || FEATURE_SEPARATE_Z_ENDSTOPS)
 				if( Printer::operatingMode == OPERATING_MODE_MILL )
 				{
 					// in operating mode "mill", the max endstop is used

@@ -55,20 +55,20 @@
 #define	NUM_EXTRUDER						1
 
 /** \brief Allows to use the 230V output */
-#define FEATURE_230V_OUTPUT					0													// the RF1000 does not support the 230 V output
+#define FEATURE_230V_OUTPUT					1													// the RF1000 does not support the 230 V output / Original 0
 
 /** \brief Allows to use the RGB light effects */
 #define	FEATURE_RGB_LIGHT_EFFECTS			0													// the RF1000 does not support RGB light effects
 
 /** \brief Allows to use the 24V FET outputs */
-#define FEATURE_24V_FET_OUTPUTS				0													// the RF1000 does not support the 24V FET outputs
+#define FEATURE_24V_FET_OUTPUTS				1													// the RF1000 does not support the 24V FET outputs / Original 0
 
 /** \brief Allows to use the EEPROM which provides type information */
 #define FEATURE_TYPE_EEPROM					1													// 1 = on, 0 = off
 
 /** \brief Allows to use the case fan
 WARNING: Do not enable the case fan feature in case you have a second extruder attached to the HZ2 pin (X8) - this could heat up the extruder endlessly and could destroy it */
-#define FEATURE_CASE_FAN					0													// 0 = off, 1 = on
+#define FEATURE_CASE_FAN					1													// 0 = off, 1 = on / Original 0
 
 #if FEATURE_CASE_FAN && NUM_EXTRUDER > 1
 	#error The case fan and the 2. extruder use the same output, they can not be used simultaneously.
@@ -82,7 +82,8 @@ WARNING: Do not enable the case fan feature in case you have a second extruder a
 #define EXT0_HOTEND_TYPE					HOTEND_TYPE_V2_SINGLE
 #endif // NUM_EXTRUDER == 2
 
-#define	FEATURE_CONFIGURABLE_Z_ENDSTOPS		1													// 1 = the z-endstop type can be switched between z-min (= single) and z-min + z-max in one circuit (= circuit), 0 = only the z-min endstop is installed
+#define	FEATURE_CONFIGURABLE_Z_ENDSTOPS		0													// 1 = the z-endstop type can be switched between z-min (= single) and z-min + z-max in one circuit (= circuit), 0 = only the z-min endstop is installed
+#define	FEATURE_SEPARATED_Z_ENDSTOPS		1													// 1 = the z-endstop type is fixed and z-min + z-max in separated circuits, 0 = other configuration
 
 #if FEATURE_MILLING_MODE
 
@@ -100,6 +101,13 @@ WARNING: Do not enable the case fan feature in case you have a second extruder a
 #define	DEFAULT_Z_ENDSTOP_TYPE				ENDSTOP_TYPE_SINGLE
 
 #endif // FEATURE_CONFIGURABLE_Z_ENDSTOPS
+
+#if FEATURE_SEPARATED_Z_ENDSTOPS
+
+/** \brief Define Default z-endstop type */
+#define	DEFAULT_Z_ENDSTOP_TYPE				ENDSTOP_TYPE_SEPARATED
+
+#endif // FEATURE_SEPARATED_Z_ENDSTOPS
 
 
 /** \brief Allows to choose whether the setpoint and the current value of the heat bed temperature shall be compensated so that the temperature offset which is caused by the printing plate is reduced */
@@ -632,7 +640,7 @@ on this endstop. */
 #define MAX_HARDWARE_ENDSTOP_X				false
 #define MAX_HARDWARE_ENDSTOP_Y				false
 
-#if FEATURE_CONFIGURABLE_Z_ENDSTOPS						// the z-max endstop is optional for the RF1000
+#if FEATURE_CONFIGURABLE_Z_ENDSTOPS	|| FEATURE_SEPARATED_Z_ENDSTOPS	// the z-max endstop is optional for the RF1000
 #define MAX_HARDWARE_ENDSTOP_Z				true
 #else
 #define MAX_HARDWARE_ENDSTOP_Z				false
@@ -1149,5 +1157,29 @@ Above this value the z compensation will distribute the roughness of the surface
 #endif // FEATURE_FIND_Z_ORIGIN
 #endif // FEATURE_MILLING_MODE
 
+// ##########################################################################################
+// ##	configuration of the 230V output
+// ##########################################################################################
+
+#if FEATURE_230V_OUTPUT
+
+/** \brief Set the 230V output default  */
+#define OUTPUT_230V_DEFAULT_ON					0												// 1 = on, 0 = off
+
+#endif // FEATURE_230V_OUTPUT
+
+
+// ##########################################################################################
+// ##	configuration of the FET outputs
+// ##########################################################################################
+
+#if FEATURE_24V_FET_OUTPUTS
+
+/** \brief Set the 24V FET output defaults  */
+#define FET1_DEFAULT_ON							0												// 1 = on, 0 = off
+#define FET2_DEFAULT_ON							0												// 1 = on, 0 = off
+#define FET3_DEFAULT_ON							0												// 1 = on, 0 = off
+
+#endif // FEATURE_24V_FET_OUTPUTS
 
 #endif // RF1000_H
